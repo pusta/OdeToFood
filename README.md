@@ -1,2 +1,2 @@
 # OdeToFood
- ASP.Net Core trainging from Pluralsight
+ ASP.Net Core training from Pluralsight
