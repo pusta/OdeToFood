@@ -18,6 +18,8 @@ namespace OdeToFood.Pages.Restaurants
         public IEnumerable<Restaurant> Restaurants { get; set; }
         private readonly IConfiguration config;
         private readonly IRestaurantData RestaurantData;
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
 
 
         public ListModel(IConfiguration config, IRestaurantData restaurantData)
@@ -26,10 +28,11 @@ namespace OdeToFood.Pages.Restaurants
             this.config = config;
             
         }
-        public void OnGet()
+        public void OnGet(string searchTerm)
         {
+            
             Message = config["Message"];
-            Restaurants = RestaurantData.GetAll();
+            Restaurants = RestaurantData.GetRestaurantsByName(SearchTerm);
         }
     }
 }
