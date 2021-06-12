@@ -36,7 +36,10 @@
                asp-page="./detail" asp-route-restaurantId="@restaurant.Id">
                 <i class="fas fa-search"></i>
             </a>
-
+            <a class="btn btn-secondary"
+               asp-page="./Edit" asp-route-restaurantId="@restaurant.Id">
+                <i class="fas fa-edit"></i>
+            </a>
         </td>
     </tr>
     
