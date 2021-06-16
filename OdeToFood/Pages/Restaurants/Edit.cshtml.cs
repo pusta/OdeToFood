@@ -15,6 +15,7 @@ namespace OdeToFood.Pages.Restaurants
         private readonly IRestaurantData restaturantData;
         private readonly IHtmlHelper htmlHelper;
 
+        [BindProperty]
         public Restaurant Restaurant { get; set; }
         public IEnumerable<SelectListItem> Cuisines { get; set; }
 
@@ -35,6 +36,19 @@ namespace OdeToFood.Pages.Restaurants
             }
             return Page();
 
+        }
+
+        public IActionResult OnPost()
+        {
+            if (ModelState.IsValid)
+            {
+                restaturantData.Update(Restaurant);
+                restaturantData.Commit();
+                return RedirectToPage("./Detail", new { restaurantId = Restaurant.Id });
+
+            }
+            Cuisines = htmlHelper.GetEnumSelectList<CuisineType>();
+            return Page();
         }
     }
 }
